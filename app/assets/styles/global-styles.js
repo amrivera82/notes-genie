@@ -1,25 +1,22 @@
-//
-//  styles.swift
-//  
-//
-//  Created by Adrian Rivera on 7/30/25.
-//
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
+  dashboard: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   splashTitle: {
     fontFamily: 'Optima',
     color: '#222',
-    fontSize: 38,
+    fontSize: 38
   },
   splashSubtitle: {
     fontFamily: 'Inter_24pt-ExtraLight',
     color: '#222',
-    fontSize: 16,
+    fontSize: 16
   },
   red: {
-    color: 'red',
-  },
+    color: 'red'
+  }
 });
-
-export { styles };

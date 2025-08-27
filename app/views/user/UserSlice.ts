@@ -1,24 +1,24 @@
 import type { AppThunk } from "@/store";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { uploadAttachment } from "./EditorAPI";
+import { uploadAttachment } from "./UserAPI";
 
 // Define the TS type for the counter slice's state
-export interface EditorState {
+export interface UserState {
   value: number,
   status: "idle" | "loading" | "failed"
 }
 
 // Define the initial value for the slice state
-const initialState: EditorState = {
+const initialState: UserState = {
   value: 0,
-  status: "idle",
+  status: "idle"
 };
 
 // Slices contain Redux reducer logic for updating state, and
 // generate actions that can be dispatched to trigger those updates.
-export const EditorSlice = createSlice({
-  name: "editor",
+export const UserSlice = createSlice({
+  name: "user",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -61,12 +61,16 @@ export const EditorSlice = createSlice({
 });
 
 // Export the generated action creators for use in components
-export const { increment, decrement, incrementByAmount } = EditorSlice.actions;
+export const { increment, decrement, incrementByAmount } = UserSlice.actions;
 
 // Export the slice reducer for use in the store configuration
-export const editorReducer = EditorSlice.reducer;
-export const selectCount = EditorSlice.selectors.selectCount;
-export const selectStatus = EditorSlice.selectors.selectStatus;
+export const userReducer = UserSlice.reducer;
+
+// Selector functions allows us to select a value from the Redux root state.
+// Selectors can also be defined inline in the `useSelector` call
+// in a component, or inside the `createSlice.selectors` field.
+export const selectCount = UserSlice.selectors.selectCount;
+export const selectStatus = UserSlice.selectors.selectStatus;
 
 // The function below is called a thunk, which can contain both sync and async logic
 // that has access to both `dispatch` and `getState`. They can be dispatched like

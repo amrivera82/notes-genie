@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { styles } from '../../assets/styles/global-styles';
+import { styles } from '../../../assets/styles/global-styles';
 
-export default () => {
+export default function GenieAI () {
   return (
     <View
       style={{
         flex: 1, justifyContent: "center", alignItems: "center", top: -20
       }}>
-      <Text style={styles.splashTitle}>Voice Note Capture</Text>
+      <Text style={styles.splashTitle}>Genie AI</Text>
     </View>
   );
 };

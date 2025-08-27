@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { styles } from '../../assets/styles/global-styles';
 
-export default () => {
+// Logout Landing
+export const Logout = () => {
   return (
     <View
       style={{

@@ -1,24 +1,24 @@
 import type { AppThunk } from "@/store";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { uploadAttachment } from "./EditorAPI";
+import { uploadAttachment } from "./NotesAPI";
 
 // Define the TS type for the counter slice's state
-export interface EditorState {
+export interface SavedNotesState {
   value: number,
   status: "idle" | "loading" | "failed"
 }
 
 // Define the initial value for the slice state
-const initialState: EditorState = {
+const initialState: SavedNotesState = {
   value: 0,
-  status: "idle",
+  status: "idle"
 };
 
 // Slices contain Redux reducer logic for updating state, and
 // generate actions that can be dispatched to trigger those updates.
-export const EditorSlice = createSlice({
-  name: "editor",
+export const SavedNotesSlice = createSlice({
+  name: "savedNotes",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -61,12 +61,13 @@ export const EditorSlice = createSlice({
 });
 
 // Export the generated action creators for use in components
-export const { increment, decrement, incrementByAmount } = EditorSlice.actions;
+export const { increment, decrement, incrementByAmount } = SavedNotesSlice.actions;
 
 // Export the slice reducer for use in the store configuration
-export const editorReducer = EditorSlice.reducer;
-export const selectCount = EditorSlice.selectors.selectCount;
-export const selectStatus = EditorSlice.selectors.selectStatus;
+export const savedNotesReducer = SavedNotesSlice.reducer;
+
+export const selectCount = SavedNotesSlice.selectors.selectCount;
+export const selectStatus = SavedNotesSlice.selectors.selectStatus;
 
 // The function below is called a thunk, which can contain both sync and async logic
 // that has access to both `dispatch` and `getState`. They can be dispatched like

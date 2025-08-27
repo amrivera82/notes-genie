@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { styles } from '../../assets/styles/global-styles';
+import { styles } from '../../../assets/styles/global-styles';
 
-export default () => {
+export default function Configuration () {
   return (
     <View
       style={{
         flex: 1, justifyContent: "center", alignItems: "center", top: -20
       }}>
-      <Text style={styles.splashTitle}>Voice Note Capture</Text>
+      <Text style={styles.splashTitle}>Tool Settings</Text>
     </View>
   );
 };

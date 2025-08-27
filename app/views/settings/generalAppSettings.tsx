@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { styles } from '../../assets/styles/global-styles';
 
 // stack navigation to user-settings, general-app-settings, ai-preferences (=> instructions)
-export default () => {
+export const GeneralAppSettings = () => {
   return (
     <View
       style={{

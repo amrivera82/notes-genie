@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { styles } from '../../assets/styles/global-styles';
 
-export default function () {
+export const Support = () => {
   return (
     <View
       style={{
