@@ -15,8 +15,5 @@ export const styles = StyleSheet.create({
     fontFamily: 'Inter_24pt-ExtraLight',
     color: '#222',
     fontSize: 16
-  },
-  red: {
-    color: 'red'
   }
 });

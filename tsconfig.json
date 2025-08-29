@@ -12,6 +12,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-, "app/assets/styles/global-styles.js", "app/store.js" ]
+    "expo-env.d.ts",
+    "app/(app)/assets/styles/global-styles.js",
+    "app/(app)/store.js"
+  ]
 }

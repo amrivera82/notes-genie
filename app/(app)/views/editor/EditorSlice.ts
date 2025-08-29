@@ -1,40 +1,32 @@
 import type { AppThunk } from "@/store";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { uploadAttachment } from "./NotesAPI";
+import { uploadAttachment as doSaveNoteAsync } from "./EditorAPI";
 
 // Define the TS type for the counter slice's state
-export interface SavedNotesState {
-  value: number,
+export interface EditorState {
+  value: string,
   status: "idle" | "loading" | "failed"
 }
 
 // Define the initial value for the slice state
-const initialState: SavedNotesState = {
-  value: 0,
-  status: "idle"
+const initialState: EditorState = {
+  value: 'note...',
+  status: "idle",
 };
 
 // Slices contain Redux reducer logic for updating state, and
 // generate actions that can be dispatched to trigger those updates.
-export const SavedNotesSlice = createSlice({
-  name: "savedNotes",
+export const EditorSlice = createSlice({
+  name: "editor",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    increment: state => {
+    saveNote: state => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.value += 1
-    },
-    decrement: state => {
-      state.value -= 1
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
+      state.value += 1;
     }
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -43,15 +35,15 @@ export const SavedNotesSlice = createSlice({
     builder
       // Handle the action types defined by the `incrementAsync` thunk defined below.
       // This lets the slice reducer update the state with request status and results.
-      .addCase(incrementAsync.pending, state => {
-        state.status = "loading"
+      .addCase(saveNoteAsync.pending, state => {
+        state.status = "loading";
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
-        state.status = "idle"
-        state.value += action.payload
+      .addCase(saveNoteAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.value += action.payload;
       })
-      .addCase(incrementAsync.rejected, state => {
-        state.status = "failed"
+      .addCase(saveNoteAsync.rejected, state => {
+        state.status = "failed";
       })
   },
   selectors: {
@@ -61,13 +53,12 @@ export const SavedNotesSlice = createSlice({
 });
 
 // Export the generated action creators for use in components
-export const { increment, decrement, incrementByAmount } = SavedNotesSlice.actions;
+export const { saveNote } = EditorSlice.actions;
 
 // Export the slice reducer for use in the store configuration
-export const savedNotesReducer = SavedNotesSlice.reducer;
-
-export const selectCount = SavedNotesSlice.selectors.selectCount;
-export const selectStatus = SavedNotesSlice.selectors.selectStatus;
+export const editorReducer = EditorSlice.reducer;
+export const selectCount = EditorSlice.selectors.selectCount;
+export const selectStatus = EditorSlice.selectors.selectStatus;
 
 // The function below is called a thunk, which can contain both sync and async logic
 // that has access to both `dispatch` and `getState`. They can be dispatched like
@@ -75,9 +66,9 @@ export const selectStatus = SavedNotesSlice.selectors.selectStatus;
 // Here's an example of conditionally dispatching actions based on current state.
 export const incrementIfOdd = (amount: number): AppThunk => {
   return (dispatch, getState) => {
-    const currentValue = selectCount(getState())
-    if (currentValue % 2 === 1) {
-      dispatch(incrementByAmount(amount))
+    const currentValue = selectCount(getState());
+    if (currentValue) {
+      dispatch(saveNote());
     }
   }
 };
@@ -88,10 +79,10 @@ export const incrementIfOdd = (amount: number): AppThunk => {
 // In this example, we make a mock async request and return the result.
 // The `createSlice.extraReducers` field can handle these actions
 // and update the state with the results.
-export const incrementAsync = createAsyncThunk(
-  "counter/saveNote",
+export const saveNoteAsync = createAsyncThunk(
+  "editor/saveNote",
   async (amount: number) => {
-    const response = await uploadAttachment(amount);
+    const response = await doSaveNoteAsync(amount);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
