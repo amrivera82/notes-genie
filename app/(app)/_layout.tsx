@@ -1,5 +1,4 @@
 import { useFonts } from 'expo-font';
-import { Link, Slot } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
@@ -32,14 +31,7 @@ export default function NavDrawer() {
 
   if (Platform.OS === 'web') {
     // Use a basic custom layout on web.
-    return (
-      <div style={{ flex: 1 }}>
-        <header>
-          <Link href="/">Home</Link>
-        </header>
-        <Slot />
-      </div>
-    )
+    return (<div>coming soon!</div>);
   }
   
   // todo: support 'macos', later 'windows'

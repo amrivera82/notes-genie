@@ -12,9 +12,9 @@ export default function () {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
+      <SafeAreaView style={{ margin: 'auto', width: '75%' }}>
         <Text style={styles.buttonLabel}>Username</Text>
-        <TextInput        
+        <TextInput
           style={styles.input}
           onChangeText={onUsernameChange}
           placeholder='username'

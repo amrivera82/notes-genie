@@ -5,10 +5,11 @@ export const styles = StyleSheet.create({
         height: 40,
         margin: 12,
         borderWidth: 1,
-        padding: 10
-    }, 
+        padding: 10,
+        borderRadius: 8
+    },
     buttonLabel: {
         marginTop: 15,
-        marginLeft: 12,
+        marginLeft: 12
     }
 });
