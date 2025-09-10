@@ -1,4 +1,4 @@
-import { useSession } from '@/ctx';
+import { useSession } from '@/app/ctx';
 import { router } from 'expo-router';
 import React from 'react';
 import { Button, Text } from 'react-native';

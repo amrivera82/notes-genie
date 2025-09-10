@@ -1,11 +1,11 @@
-import { useSession } from '@/ctx';
+import { useSession } from '@/app/ctx';
 import React from 'react';
 import { Button, Text, TextInput } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import SessionInfo from './SessionInfo';
-import { styles } from './styles.js';
+import SessionInfo from './session/SessionInfo';
+import { styles } from './session/styles.js';
 
-export default function () {
+export default function SignIn () {
   const [username, onUsernameChange] = React.useState('');
   const [password, onPasswordChange] = React.useState('');
   const { signIn } = useSession();
@@ -32,7 +32,7 @@ export default function () {
         <Button title='Sign In'
           color='#0000bcff'
           onPress={() => {
-            signIn(new SessionInfo(username, password, ''));
+            signIn(new SessionInfo(username, password, 'token-x'));
           }}
         />
         <Button title='Forgot Username'></Button>

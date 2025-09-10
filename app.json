@@ -5,14 +5,15 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/(app)/assets/images/icon.png",
-    "scheme": "jeevesorganizer",
+    "scheme": "note-genie",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "Y",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSMicrophoneUsageDescription": "This app needs access to your microphone to record audio."
       },
       "adaptiveIcon": {
         "image": "./app/(app)/assets/images/icon.png",
@@ -45,7 +46,11 @@
           "backgroundColor": "#000"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      ["expo-audio",
+      {
+        "microphonePermission": "Allow NoteGenie to access your microphone."
+      }]
     ],
     "experiments": {
       "typedRoutes": true

@@ -49,7 +49,6 @@ export function useStorageState(key: string): UseStateHook<string> {
             }
         } else {
             SecureStore.getItemAsync(key).then(value => {
-                console.log(value);
                 setState(value);
             });
         }

@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
-import { SessionProvider, useSession } from '../ctx';
 import { SplashScreenController } from '../splash';
+import { SessionProvider, useSession } from './ctx';
 
 export default function Root() {
     // Set up the auth context and render our layout inside of it.
@@ -18,7 +18,7 @@ function RootNavigator() {
     return (
         <Stack>
             <Stack.Protected guard={!session}>
-                <Stack.Screen name="session/index"
+                <Stack.Screen name="index"
                     options={{
                         headerShown: false,
                         presentation: 'modal'

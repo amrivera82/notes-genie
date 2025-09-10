@@ -3,12 +3,14 @@ import "./styles.css";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { EditorRefPlugin } from "@lexical/react/LexicalEditorRefPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 
-import { $getRoot } from "lexical";
+import { $getRoot, LexicalEditor } from "lexical";
+import { useEffect, useRef } from "react";
 import { BasicTheme } from "./BasicTheme";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
 
@@ -21,15 +23,30 @@ const editorConfig = {
     onError(error: Error) {
         throw error;
     },
-    theme: BasicTheme,
+    theme: BasicTheme
 };
+
 export const GenieEditor = ({
     setRichText,
     setEditorState,
+    setEditorLoaded
 }: {
     setRichText: React.Dispatch<React.SetStateAction<string>>;
     setEditorState: React.Dispatch<React.SetStateAction<string | null>>;
+    setEditorLoaded: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+
+    const editorRef = useRef<LexicalEditor>(undefined);
+
+    useEffect(() => {
+        setEditorLoaded(true);
+        // This callback fires on every editor state update.
+        // You can access the latest editorState here.
+        // For example, to check if the editor has content:
+        // const isEmpty = editorState.isEmpty();
+        // console.log('Editor state updated:', editorState.toJSON());
+    }, [editorRef]);
+
     return (
         <>
             <LexicalComposer initialConfig={editorConfig}>
@@ -62,9 +79,10 @@ export const GenieEditor = ({
                         />
                         <HistoryPlugin />
                         <AutoFocusPlugin />
+                        <EditorRefPlugin editorRef={editorRef} />
                     </div>
                 </div>
             </LexicalComposer>
         </>
     );
-}
+};

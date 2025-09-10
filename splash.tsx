@@ -1,5 +1,5 @@
 import { SplashScreen } from 'expo-router';
-import { useSession } from './ctx';
+import { useSession } from './app/ctx';
 
 export function SplashScreenController() {
 	const { isLoading } = useSession();

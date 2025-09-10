@@ -15,7 +15,7 @@ const initialState: InsightsCenterState = {
 };
 
 export const InsightsCenterSlice = createSlice({
-name: "insights",
+  name: "insights",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -67,7 +67,7 @@ export const insightsReducer = InsightsCenterSlice.reducer;
 // Selectors can also be defined inline in the `useSelector` call
 // in a component, or inside the `createSlice.selectors` field.
 export const selectCount = InsightsCenterSlice.selectors.selectCount;
-export const selectStatus =InsightsCenterSlice.selectors.selectStatus;
+export const selectStatus = InsightsCenterSlice.selectors.selectStatus;
 
 // The function below is called a thunk, which can contain both sync and async logic
 // that has access to both `dispatch` and `getState`. They can be dispatched like
